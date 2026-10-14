@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>हमारे बारे में | मिथिला विवाह मंच</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <style>
+        :root {
+            --bg: #f6efe9;
+            --paper: rgba(255, 255, 255, 0.9);
+            --ink: #231942;
+            --muted: #5d536d;
+            --rose: #d4537e;
+            --rose-soft: rgba(212, 83, 126, 0.12);
+            --violet: #5541a8;
+            --line: rgba(35, 25, 66, 0.08);
+            --shadow: 0 22px 50px rgba(35, 25, 66, 0.12);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Nirmala UI", "Segoe UI", sans-serif;
+            color: var(--ink);
+            background:
+                radial-gradient(circle at top left, rgba(212, 83, 126, 0.15), transparent 28%),
+                radial-gradient(circle at bottom right, rgba(85, 65, 168, 0.16), transparent 30%),
+                linear-gradient(180deg, #fbf6f1 0%, var(--bg) 100%);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .page-shell {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 24px 16px 56px;
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 18px;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 800;
+            letter-spacing: 0.02em;
+        }
+
+        .brand-mark {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 6px;
+            box-shadow: 0 12px 30px rgba(35, 25, 66, 0.12);
+        }
+
+        .top-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .pill-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 42px;
+            padding: 0 18px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.8);
+            color: var(--ink);
+            font-weight: 700;
+            box-shadow: 0 8px 18px rgba(35, 25, 66, 0.06);
+        }
+
+        .pill-link.primary {
+            background: linear-gradient(135deg, var(--ink), var(--violet));
+            color: #fff;
+            border-color: transparent;
+        }
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            border-radius: 30px;
+            min-height: 500px;
+            display: grid;
+            align-items: end;
+            background:
+                linear-gradient(110deg, rgba(20, 14, 37, 0.88) 0%, rgba(20, 14, 37, 0.52) 42%, rgba(20, 14, 37, 0.12) 100%),
+                url('images/cover_foto.png') center/cover no-repeat;
+            box-shadow: var(--shadow);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            padding: 44px;
+            color: #fff9fc;
+        }
+
+        .hero-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            margin-bottom: 18px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.14);
+            backdrop-filter: blur(10px);
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            margin: 0 0 16px;
+            font-size: clamp(36px, 5.8vw, 66px);
+            line-height: 0.98;
+            font-weight: 900;
+        }
+
+        .hero p {
+            margin: 0;
+            font-size: 17px;
+            line-height: 1.8;
+            color: rgba(255, 249, 252, 0.92);
+        }
+
+        .stats-strip {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 14px;
+            margin-top: -34px;
+            padding: 0 18px;
+        }
+
+        .stat-card {
+            padding: 18px 18px 16px;
+            border-radius: 22px;
+            border: 1px solid rgba(255, 255, 255, 0.42);
+            background: rgba(255, 255, 255, 0.86);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 18px 34px rgba(35, 25, 66, 0.08);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #7a6d8e;
+        }
+
+        .stat-value {
+            margin-top: 8px;
+            font-size: 29px;
+            font-weight: 900;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .section-card,
+        .quote-card {
+            border-radius: 22px;
+            padding: 22px;
+        }
+
+        .section-card {
+            border: 1px solid var(--line);
+            background: var(--paper);
+            box-shadow: 0 14px 32px rgba(35, 25, 66, 0.06);
+        }
+
+        .section-card h2,
+        .quote-card h2 {
+            margin: 0 0 14px;
+            font-size: 25px;
+            font-weight: 900;
+        }
+
+        .section-card p,
+        .quote-card p {
+            margin: 0;
+            line-height: 1.85;
+            font-size: 16px;
+        }
+
+        .section-card p {
+            color: var(--muted);
+        }
+
+        .feature-list,
+        .team-grid {
+            display: grid;
+            gap: 14px;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+            padding: 18px;
+            border-radius: 18px;
+            border: 1px solid var(--line);
+            background: #fff;
+        }
+
+        .feature-icon {
+            flex: 0 0 44px;
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            display: grid;
+            place-items: center;
+            font-size: 20px;
+            background: var(--rose-soft);
+        }
+
+        .feature-item strong,
+        .team-content h3 {
+            display: block;
+            margin: 0 0 6px;
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--ink);
+        }
+
+        .feature-item span {
+            color: var(--muted);
+            line-height: 1.75;
+        }
+
+        .team-card {
+            padding: 24px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            background: #fff;
+            border: 1px solid var(--line);
+        }
+
+        .team-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .team-role {
+            display: inline-flex;
+            padding: 6px 12px;
+            margin-bottom: 10px;
+            border-radius: 999px;
+            background: rgba(85, 65, 168, 0.12);
+            color: var(--violet);
+            font-weight: 700;
+        }
+
+        .quote-card {
+            background: linear-gradient(135deg, #231942, #51348a);
+            color: #fff8fb;
+            box-shadow: 0 24px 44px rgba(35, 25, 66, 0.18);
+        }
+
+        .quote-card p {
+            color: rgba(255, 248, 251, 0.92);
+        }
+
+        @media (max-width: 992px) {
+            .stats-strip {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 640px) {
+            .page-shell {
+                padding-top: 18px;
+            }
+
+            .topbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .hero {
+                min-height: 440px;
+                margin-left: -16px;
+                margin-right: -16px;
+                border-radius: 0;
+            }
+
+            .hero-content {
+                padding: 28px 22px;
+            }
+
+            .stats-strip {
+                grid-template-columns: 1fr;
+                margin-top: 18px;
+                padding: 0;
+            }
+
+            .section-card,
+            .quote-card {
+                padding: 20px;
+            }
+
+            .team-card {
+                text-align: center;
+            }
+        }
+
+        /* ===== नए सेक्शन ===== */
+        .new-sections{margin-top:24px;display:grid;gap:24px}
+        .sec-head{text-align:center;margin-bottom:16px}
+        .sec-head h2{margin:0 0 6px;font-size:25px;font-weight:900}
+        .sec-head p{margin:0;color:var(--muted);line-height:1.7;font-size:15px}
+        .free-badge{display:inline-block;margin-bottom:8px;padding:5px 14px;border-radius:999px;background:rgba(37,160,90,.14);color:#17824a;font-weight:800;font-size:13px}
+        .group-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+        .group-card{display:flex;flex-direction:column;justify-content:space-between;gap:12px;padding:16px 14px;border-radius:18px;background:#fff;border:1px solid var(--line);box-shadow:0 10px 24px rgba(35,25,66,.06);text-align:center}
+        .group-card .gi{width:44px;height:44px;margin:0 auto;border-radius:14px;display:grid;place-items:center;font-size:20px;background:var(--rose-soft)}
+        .group-card b{font-size:15px;line-height:1.5}
+        .group-card .free{font-size:12px;font-weight:800;color:#17824a}
+        .join-btn{display:flex;align-items:center;justify-content:center;min-height:42px;border-radius:12px;background:#25d366;color:#06260f;font-weight:800;font-size:15px}
+        .premium{border-radius:26px;padding:24px 18px;background:linear-gradient(160deg,#1a0d0b,#3a1212);color:#f7ecd6;border:1.5px solid #e8b94a;box-shadow:0 24px 50px rgba(35,25,66,.22);text-align:center}
+        .premium img{width:min(60vw,220px);aspect-ratio:1;border-radius:50%;object-fit:cover;border:2px solid #e8b94a;box-shadow:0 0 0 5px rgba(232,185,74,.14)}
+        .premium h2{margin:16px 0 4px;font-size:26px;font-weight:900;color:#f6d57a}
+        .premium .tag{display:inline-block;padding:5px 16px;border:1px solid #e8b94a;border-radius:999px;color:#f6d57a;font-weight:800;font-size:13px;letter-spacing:.14em}
+        .premium ul{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:10px;text-align:left}
+        .premium li{padding:12px 14px;border-radius:14px;background:rgba(255,255,255,.07);border:1px solid rgba(232,185,74,.25);line-height:1.7}
+        .premium .amt{margin:18px 0 2px;font-size:48px;font-weight:900;color:#f6d57a;line-height:1.2}
+        .premium .amt small{font-size:.4em;vertical-align:top}
+        .gold-btn{display:flex;align-items:center;justify-content:center;min-height:50px;margin-top:14px;border-radius:14px;background:linear-gradient(135deg,#f6d57a,#a77a1f);color:#2a1700;font-weight:900;font-size:17px}
+        .gold-btn.wa{background:#25d366;color:#06260f}
+        .svc-steps{list-style:none;margin:14px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+        .svc-steps li{padding:14px 6px;border-radius:16px;background:#fff;border:1px solid var(--line);text-align:center;font-weight:800}
+        .svc-steps span{display:block;font-size:22px;margin-bottom:4px}
+        .svc-warn{margin-top:14px;padding:14px;border-radius:14px;background:rgba(212,83,126,.1);border:1px dashed var(--rose);color:var(--ink);line-height:1.7;font-size:15px}
+        .founder-grid{display:grid;gap:14px}
+        .founder{display:flex;align-items:center;gap:14px;padding:16px;border-radius:20px;background:#fff;border:1px solid var(--line);box-shadow:0 10px 24px rgba(35,25,66,.06)}
+        .founder .av{flex:0 0 64px;width:64px;height:64px;border-radius:50%;display:grid;place-items:center;font-size:26px;font-weight:900;color:#fff;background:linear-gradient(135deg,var(--ink),var(--violet));overflow:hidden}
+        .founder .av img{width:100%;height:100%;object-fit:cover}
+        .founder h3{margin:0 0 6px;font-size:18px;font-weight:800}
+        .glogo{width:84px;height:84px;margin:0 auto;object-fit:contain;border-radius:50%;background:#fff;border:1px solid var(--line);padding:2px}
+        .group-card .members{margin:4px 0 2px;font-size:13px;font-weight:700;color:var(--violet)}
+        @media (min-width:700px){
+            .group-grid{grid-template-columns:repeat(3,1fr)}
+            .founder-grid{grid-template-columns:1fr 1fr}
+        }
+    </style>
+</head>
+<body>
+<div class="page-shell">
+    <div class="topbar">
+        <a href="./" class="brand">
+            <img src="images/mithila1.png" alt="मिथिला विवाह मंच" class="brand-mark">
+            <span>मिथिला विवाह मंच</span>
+        </a>
+        <div class="top-links">
+            <a href="#about" class="pill-link">About Us</a>
+        </div>
+    </div>
+
+    <section class="hero" id="top">
+        <div class="hero-content">
+            <div class="hero-kicker">About Us</div>
+            <h1>मिथिला विवाह मंच</h1>
+            <p>
+                मिथिला समाज के योग्य वर-वधू के परिवारों को सुरक्षित, सम्मानजनक और पारदर्शी माध्यम से जोड़ने वाला
+                एक विश्वसनीय वैवाहिक मंच।
+            </p>
+        </div>
+    </section>
+
+    <section class="stats-strip">
+        <article class="stat-card">
+            <div class="stat-label">सक्रिय ग्रुप्स</div>
+            <div class="stat-value">9+</div>
+        </article>
+        <article class="stat-card">
+            <div class="stat-label">सदस्य</div>
+            <div class="stat-value">9200</div>
+        </article>
+        <article class="stat-card">
+            <div class="stat-label">समाज सेवा</div>
+            <div class="stat-value">4 वर्ष</div>
+        </article>
+        <article class="stat-card">
+            <div class="stat-label">मॉडल</div>
+            <div class="stat-value">Direct</div>
+        </article>
+    </section>
+
+    <div class="new-sections">
+
+        <section id="free-groups">
+            <div class="sec-head">
+                <span class="free-badge">🆓 FREE ग्रुप्स</span>
+                <h2>9 ग्रुप्स – जुड़ना बिल्कुल निःशुल्क</h2>
+                <p>"जुड़ें" दबाएँ, WhatsApp पर हमें मैसेज जाएगा और हम आपको ग्रुप का लिंक भेज देंगे।</p>
+            </div>
+            <div class="group-grid">
+            <div class="group-card">
+                <img class="glogo" src="images/mithila1.png" alt="मिथिला विवाह मंच">
+                <div><b>मिथिला विवाह मंच<br>ग्रुप 1</b><div class="members">👥 987 सदस्य</div><div class="free">🆓 जुड़ना निःशुल्क</div></div>
+                <a class="join-btn" href="https://wa.me/918291823690?text=Mithila%20Vivah%20Manch%20Group%201%20join%20karna%20hai" target="_blank" rel="noopener">जुड़ें</a>
+            </div>
+            <div class="group-card">
+                <img class="glogo" src="images/mithila1.png" alt="मिथिला विवाह मंच">
+                <div><b>मिथिला विवाह मंच<br>ग्रुप 2</b><div class="members">👥 962 सदस्य</div><div class="free">🆓 जुड़ना निःशुल्क</div></div>
+                <a class="join-btn" href="https://wa.me/918291823690?text=Mithila%20Vivah%20Manch%20Group%202%20join%20karna%20hai" target="_blank" rel="noopener">जुड़ें</a>
+            </div>
+            <div class="group-card">
+                <img class="glogo" src="images/mithila1.png" alt="मिथिला विवाह मंच">
+                <div><b>मिथिला विवाह मंच<br>ग्रुप 3</b><div class="members">👥 1004 सदस्य</div><div class="free">🆓 जुड़ना निःशुल्क</div></div>
+                <a class="join-btn" href="https://wa.me/918291823690?text=Mithila%20Vivah%20Manch%20Group%203%20join%20karna%20hai" target="_blank" rel="noopener">जुड़ें</a>
+            </div>
+            <div class="group-card">
+                <img class="glogo" src="images/mithila1.png" alt="मिथिला विवाह मंच">
+                <div><b>मिथिला विवाह मंच<br>ग्रुप 4</b><div class="members">👥 975 सदस्य</div><div class="free">🆓 जुड़ना निःशुल्क</div></div>
+                <a class="join-btn" href="https://wa.me/918291823690?text=Mithila%20Vivah%20Manch%20Group%204%20join%20karna%20hai" target="_blank" rel="noopener">जुड़ें</a>
+            </div>
+            <div class="group-card">
+                <img class="glogo" src="images/mithila1.png" alt="मिथिला विवाह मंच">
+                <div><b>मिथिला विवाह मंच<br>ग्रुप 5</b><div class="members">👥 953 सदस्य</div><div class="free">🆓 जुड़ना निःशुल्क</div></div>
+                <a class="join-btn" href="https://wa.me/918291823690?text=Mithila%20Vivah%20Manch%20Group%205%20join%20karna%20hai" target="_blank" rel="noopener">जुड़ें</a>
+            </div>
+            <div class="group-card">
+                <img class="glogo" src="images/mithila1.png" alt="मिथिला विवाह मंच">
+                <div><b>मिथिला विवाह मंच<br>ग्रुप 6</b><div class="members">👥 998 सदस्य</div><div class="free">🆓 जुड़ना निःशुल्क</div></div>
+                <a class="join-btn" href="https://wa.me/918291823690?text=Mithila%20Vivah%20Manch%20Group%206%20join%20karna%20hai" target="_blank" rel="noopener">जुड़ें</a>
+            </div>
+            <div class="group-card">
+                <img class="glogo" src="images/mithila1.png" alt="मिथिला विवाह मंच">
+                <div><b>मिथिला विवाह मंच<br>ग्रुप 7</b><div class="members">👥 971 सदस्य</div><div class="free">🆓 जुड़ना निःशुल्क</div></div>
+                <a class="join-btn" href="https://wa.me/918291823690?text=Mithila%20Vivah%20Manch%20Group%207%20join%20karna%20hai" target="_blank" rel="noopener">जुड़ें</a>
+            </div>
+            <div class="group-card">
+                <img class="glogo" src="images/mithila1.png" alt="मिथिला विवाह मंच">
+                <div><b>मिथिला विवाह मंच<br>ग्रुप 8</b><div class="members">👥 1009 सदस्य</div><div class="free">🆓 जुड़ना निःशुल्क</div></div>
+                <a class="join-btn" href="https://wa.me/918291823690?text=Mithila%20Vivah%20Manch%20Group%208%20join%20karna%20hai" target="_blank" rel="noopener">जुड़ें</a>
+            </div>
+            <div class="group-card">
+                <img class="glogo" src="images/mithila1.png" alt="मिथिला विवाह मंच">
+                <div><b>मिथिला विवाह मंच<br>ग्रुप 9</b><div class="members">👥 981 सदस्य</div><div class="free">🆓 जुड़ना निःशुल्क</div></div>
+                <a class="join-btn" href="https://wa.me/918291823690?text=Mithila%20Vivah%20Manch%20Group%209%20join%20karna%20hai" target="_blank" rel="noopener">जुड़ें</a>
+            </div>
+            </div>
+        </section>
+
+        <section id="premium" class="premium">
+            <img src="images/premium.jpeg" alt="मिथिला विवाह मंच Premium">
+            <h2>💎 मिथिला विवाह मंच – कन्या ग्रुप 💎</h2>
+            <span class="tag">PREMIUM</span>
+            <ul>
+                <li>🌸 जे वर पक्ष केवल कन्याक बायोडाटा देखय चाहैत छथि, ओ एहि ग्रुप मे जुड़ू।</li>
+                <li>👨‍👩‍👧 एहि ग्रुप मे खाली वर पक्ष जुड़ल जाय छै।</li>
+                <li>✅ वर्किंग आ नॉन-वर्किंग दुनू तरहक कन्याक बायोडाटा भेटत।</li>
+                <li>✅ जे परिवार विवाह लेल गंभीर छथि, हुनका लेल नीक मौका।</li>
+                <li>📞 बायोडाटा मे परिवारक संपर्क नंबर, सीधे बात करू।</li>
+            </ul>
+            <div class="amt"><small>₹</small>501</div>
+            <div>💰 1 सालक फीस: मात्र ₹501</div>
+            <a class="gold-btn wa" href="https://wa.me/918291823690?text=Premium%20Kanya%20Group%20join%20karna%20hai" target="_blank" rel="noopener">💬 Premium ग्रुप मे जुड़ू</a>
+            <a class="gold-btn" href="tel:+918291823690">📞 Contact: 8291823690</a>
+        </section>
+
+        <section id="service">
+            <div class="section-card">
+                <div class="sec-head">
+                    <span class="free-badge" style="background:var(--rose-soft);color:var(--rose)">⭐ विशेष सेवा</span>
+                    <h2>उमर आ गोत्र अनुसार बायोडाटा सीधे WhatsApp पर</h2>
+                </div>
+                <p>ग्रुप मे बायोडाटा पोस्ट करबाक अतिरिक्त, जँ अहाँ अपन उमर आ गोत्र अनुसार विवाह योग्य प्रोफाइल सीधे WhatsApp पर प्राप्त करय चाहैत छी, तँ ई विशेष सुविधा उपलब्ध अछि।</p>
+                <p style="margin-top:10px">अहाँक उमर आ गोत्रक आधार पर <b>लगभग 100 - 150 टा बायोडाटा</b> एक्के बेर WhatsApp पर भेज देल जैत।</p>
+                <p style="margin-top:10px">सभ प्रोफाइल मे संबंधित परिवारक संपर्क नंबर देल रहत, अहाँ अपन पसंद अनुसार सीधे परिवार सँ संपर्क कऽ विवाहक बात आगाँ बढ़ा सकैत छी।</p>
+                <p style="margin-top:14px;font-weight:800;color:var(--ink)">ई सेवा लेबय लेल WhatsApp पर ई जानकारी भेजू:</p>
+                <ul class="svc-steps">
+                    <li><span>📝</span>नाम</li>
+                    <li><span>🎂</span>उमर</li>
+                    <li><span>🪔</span>गोत्र</li>
+                </ul>
+                <div class="svc-warn">⚠️ ई एकटा <b>Paid Service</b> अछि, कारण प्रत्येक अनुरोध लेल समय निकालि कऽ मैनुअली प्रोफाइल चयन कएल जाइत अछि।</div>
+                <a class="join-btn" style="margin-top:14px;min-height:50px;font-size:16px" href="https://wa.me/918291823690?text=%E0%A4%A8%E0%A4%BE%E0%A4%AE%3A%20%0A%E0%A4%89%E0%A4%AE%E0%A4%B0%3A%20%0A%E0%A4%97%E0%A5%8B%E0%A4%A4%E0%A5%8D%E0%A4%B0%3A%20" target="_blank" rel="noopener">💬 नाम, उमर, गोत्र भेजें</a>
+            </div>
+        </section>
+
+        <section id="founders">
+            <div class="sec-head">
+                <h2>हमारे संस्थापक</h2>
+                <p>मिथिला समाज की सेवा के संकल्प के साथ</p>
+            </div>
+            <div class="founder-grid">
+            <div class="founder">
+                <div class="av">र</div>
+                <div><h3>श्री रामन पाठक</h3><div class="team-role">संस्थापक, मिथिला विवाह मंच</div></div>
+            </div>
+            <div class="founder">
+                <div class="av">डॉ</div>
+                <div><h3>डॉ. राजकुमार झा</h3><div class="team-role">संस्थापक, मिथिला विवाह मंच</div></div>
+            </div>
+            <div class="founder">
+                <div class="av">प्री</div>
+                <div><h3>एडव. प्रीतम झा</h3><div class="team-role">संस्थापक, मिथिला विवाह मंच</div></div>
+            </div>
+            <div class="founder">
+                <div class="av">वि</div>
+                <div><h3>पंडित विशेह्वर चौधरी</h3><div class="team-role">संस्थापक, मिथिला विवाह मंच</div></div>
+            </div>
+            </div>
+        </section>
+
+    </div>
+
+        <section class="content-grid" id="about">
+        <div class="section-card">
+            <h2>हमारा परिचय</h2>
+            <p>
+                मिथिला विवाह मंच एक विश्वसनीय एवं पारदर्शी वैवाहिक मंच है, जो पिछले लगभग 3 वर्षों से निरंतर
+                मिथिला समाज की सेवा कर रहा है। यह मंच समाज के योग्य वर-वधू के परिवारों को एक सुरक्षित एवं
+                सम्मानजनक माध्यम से जोड़ने का कार्य करता है।
+            </p>
+        </div>
+
+        <div class="section-card">
+            <h2>हमारी यात्रा</h2>
+            <p>
+                पिछले 3 वर्षों की इस यात्रा में मिथिला विवाह मंच ने समाज के परिवारों के बीच भरोसे का एक मजबूत
+                सेतु बनाया है। आज 8 से अधिक सक्रिय ग्रुप्स और 8000+ सदस्यों के सहयोग से यह मंच निरंतर विस्तार
+                कर रहा है और योग्य परिचयों को सम्मानजनक दिशा दे रहा है।
+            </p>
+        </div>
+
+        <div class="section-card">
+            <h2>हम क्यों अलग हैं</h2>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <div class="feature-icon">🤝</div>
+                    <div>
+                        <strong>कोई बिचौलिया नहीं</strong>
+                        <span>परिवार सीधे संवाद करते हैं और निर्णय प्रक्रिया अपने हाथ में रखते हैं।</span>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🔒</div>
+                    <div>
+                        <strong>सुरक्षित वातावरण</strong>
+                        <span>सम्मानजनक परिचय, नियंत्रित साझा प्रक्रिया और सुरक्षित सहभागिता।</span>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📡</div>
+                    <div>
+                        <strong>व्यापक पहुँच</strong>
+                        <span>सक्रिय ग्रुप्स और बड़े सदस्य नेटवर्क के कारण प्रोफाइल अधिक परिवारों तक पहुँचती है।</span>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">✨</div>
+                    <div>
+                        <strong>पारदर्शी प्रक्रिया</strong>
+                        <span>हर चरण में स्पष्टता, सरलता और भरोसे को प्राथमिकता दी जाती है।</span>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🪔</div>
+                    <div>
+                        <strong>सांस्कृतिक सम्मान</strong>
+                        <span>मिथिला समाज की परंपराओं, मूल्यों और संस्कारों को केंद्र में रखा जाता है।</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="quote-card">
+            <h2>हमारा संकल्प</h2>
+            <p>
+                हमारा विश्वास है कि सम्मान, पारदर्शिता और सीधे संवाद के माध्यम से वैवाहिक परिचय की प्रक्रिया
+                अधिक सहज और सफल बनती है। मिथिला विवाह मंच निरंतर इस दिशा में कार्यरत है ताकि प्रत्येक परिवार
+                को योग्य, संस्कारी और उपयुक्त जीवनसाथी की खोज में भरोसेमंद सहयोग मिल सके।
+            </p>
+        </div>
+
+        <div class="section-card">
+            <h2>हमारी टीम</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-content">
+                        <h3>श्री रामन पाठक</h3>
+                        <div class="team-role">संस्थापक, मिथिला विवाह मंच</div>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-content">
+                        <h3>डॉ. राजकुमार झा</h3>
+                        <div class="team-role">संस्थापक, मिथिला विवाह मंच</div>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-content">
+                        <h3>एडव. प्रीतम झा</h3>
+                        <div class="team-role">संस्थापक, मिथिला विवाह मंच</div>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-content">
+                        <h3>पंडित विशेह्वर चौधरी</h3>
+                        <div class="team-role">संस्थापक, मिथिला विवाह मंच</div>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-content">
+                        <h3>श्री चोजोबा पाठक</h3>
+                        <div class="team-role">सेवक, मिथिला विवाह मंच</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+</html>
